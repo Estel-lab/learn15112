@@ -54,4 +54,24 @@ def almostEqual(d1, d2):
 d1 = 0.1 + 0.1 + 0.1
 d2 = 0.3
 print(d1 == d2)
-print(almostEqual(d1, d2))
+print(almostEqual(d1,
+                  d2))  # True, and now packaged in a handy reusable function!
+
+
+def yes():
+    return True
+
+
+def no():
+    return False
+
+
+def crash():
+    return 1 / 0  # crashes!
+
+
+print(no() and crash())  # Works!
+print(crash() and no())  # Crashes!
+print(
+    yes() and crash()
+)  # Never runs (due to crash), but would also crash (without short-circuiting)
