@@ -164,8 +164,32 @@ def playThreeDiceYahtzee(dice):
 #################################################
 
 
+def local(m1, b1, m2, b2):
+    x = (b1 - b2) / (m2 - m1)
+    y = m1 * x + b1
+    return (x, y)
+
+
+def pointdistence(x1, y1, x2, y2):
+    L = math.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+    return (L)
+
+
+def triangle_area(L1, L2, L3):
+    s = (L1 + L2 + L3) / 2
+    A = math.sqrt(s * (s - L1) * (s - L2) * (s - L3))
+    return (A)
+
+
 def threeLinesArea(m1, b1, m2, b2, m3, b3):
-    return 42
+    (x1, y1) = local(m1, b1, m2, b2)
+    (x2, y2) = local(m2, b2, m3, b3)
+    (x3, y3) = local(m1, b1, m3, b3)
+    L1 = pointdistence(x1, y1, x2, y2)
+    L2 = pointdistence(x2, y2, x3, y3)
+    L3 = pointdistence(x3, y3, x1, y1)
+    A = triangle_area(L1, L2, L3)
+    return (A)
 
 
 def colorBlender(rgb1, rgb2, midpoints, n):
