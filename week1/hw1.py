@@ -193,6 +193,7 @@ def threeLinesArea(m1, b1, m2, b2, m3, b3):
 
 
 def colorBlender(rgb1, rgb2, midpoints, n):
+
     return 42
 
 
