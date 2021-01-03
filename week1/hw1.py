@@ -24,6 +24,7 @@ from _decimal import *
 
 
 def roundHalfDown(d):
+
     rounding = decimal.ROUND_HALF_DOWN
 
     return int(decimal.Decimal(d).to_integral_value(rounding=rounding))
@@ -31,7 +32,6 @@ def roundHalfDown(d):
 
 def ROUND_CEILING(d):
     rounding = decimal.ROUND_CEILING
-
     return int(decimal.Decimal(d).to_integral_value(rounding=rounding))
 
 
@@ -48,6 +48,7 @@ def eggCartons(eggs):
 def nearestBusStop(street):
 
     L = roundHalfDown(street / 8)
+
     BusStop = 8 * L
 
     return BusStop

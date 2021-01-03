@@ -3,6 +3,14 @@ import decimal
 from _decimal import *
 
 
+def roundHalfUp(d):
+    # Round to nearest with ties going away from zero.
+    rounding = decimal.ROUND_HALF_UP
+    # See other rounding options here:
+    # https://docs.python.org/3/library/decimal.html#rounding-modes
+    return int(decimal.Decimal(d).to_integral_value(rounding=rounding))
+
+
 def getKthDigit(n, k):
     n = Decimal(n) % Decimal(10**(k + 1))
     n = Decimal(n) // Decimal(10**k)
@@ -11,37 +19,17 @@ def getKthDigit(n, k):
     return n
 
 
-def setKthDigit(n, k, d):
-    if (n >= 0):
-        j = -1
-    else:
-        j = 1
-
-    n = n + j * getKthDigit(n, k) * (10**k) - j * Decimal(d) * (10**k)
-    return n
-
-
-#################################################
-# hw1-spicy functions (for you to write)
-#################################################
+def isPalindromicNumber(n):
+    i = 0
+    j = 0
+    k = 0
+    while (k != 0):
+        k = n // 10**i
+        i += 1
+    for j in range(roundHalfUp((i + 1) / 2)):
+        if (getKthDigit(n, j) != getKthDigit(n, i - j)):
+            return False
+    return True
 
 
-def handToDice(dice):
-    n1 = getKthDigit(dice, 2)
-    n2 = getKthDigit(dice, 1)
-    n3 = getKthDigit(dice, 0)
-    return (n1, n2, n3)
-
-
-print(handToDice(321))
-
-
-def diceToOrderedHand(dice):
-
-    (n1, n2, n3) = handToDice(dice)
-    n_L = max(n1, n2, n3)
-    n_S = min(n1, n2, n3)
-    n_M = (n1 + n2 + n3) - (n_L + n_S)
-    return (n_L * 100 + n_M * 10 + n_S)
-
-    print(diceToOrderedHand(1, 2, 3))
+print(isPalindromicNumber(1221))
